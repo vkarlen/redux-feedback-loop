@@ -12,6 +12,11 @@ function Feeling() {
     evt.preventDefault();
     console.log('in submit');
     console.log(feelingNum);
+
+    dispatch({
+      type: 'UPDATE_FEELING',
+      payload: feelingNum,
+    });
   };
 
   return (
@@ -27,6 +32,7 @@ function Feeling() {
             name="feeling"
             value={feelingNum}
             onChange={(evt) => setFeelingNum(evt.target.value)}
+            required
           ></input>
           <button>Next</button>
         </label>

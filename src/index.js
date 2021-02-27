@@ -19,8 +19,8 @@ const defaultFeedback = {
 // Reducer to handle all Feedback inputs
 const feedbackReducer = (state = defaultFeedback, action) => {
   switch (action.type) {
-    case 'UPDATE_FEEDBACK':
-      return { ...state, [action.payload]: action.payload };
+    case 'UPDATE_FEELING':
+      return { ...state, feeling: action.payload };
     case 'CLEAR_FEEDBACK':
       return defaultFeedback;
     default:
