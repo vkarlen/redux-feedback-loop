@@ -7,13 +7,10 @@ function Review() {
   const history = useHistory();
 
   const handleSubmit = () => {
-    console.log('in Submit');
-    console.log(feedback);
-
     axios
       .post('/api/feedback', feedback)
       .then((res) => {
-        console.log('back from server');
+        history.push('/submit');
       })
       .catch((err) => {
         console.log('Error in post', err);
