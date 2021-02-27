@@ -15,8 +15,8 @@
 - [x] Supported
   - [x] input required
   - [x] next button should take you to 'Comments'
-- [] Comments
-  - [] next button should take you to 'Review'
+- [x] Comments
+  - [x] next button should take you to 'Review'
 - [] Review page that displays answers given
   - [] submit page should send to the db and push the uder to the submit success page
 - [] Submit page showing that submit was successful
