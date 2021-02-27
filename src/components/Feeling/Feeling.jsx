@@ -10,12 +10,13 @@ function Feeling() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log('in submit');
-    console.log(feelingNum);
 
     dispatch({
-      type: 'UPDATE_FEELING',
-      payload: feelingNum,
+      type: 'UPDATE_FEEDBACK',
+      payload: {
+        property: 'feeling',
+        value: feelingNum,
+      },
     });
   };
 
