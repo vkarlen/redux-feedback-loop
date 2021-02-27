@@ -3,9 +3,9 @@
 - [x] Create all components
 - [x] Wire components to App
 - [x] Create routes
-- [] Create store
-  - [] one store to hold answers
-  - [] default state should be an object
+- [x] Create store
+  - [x] one store to hold answers
+  - [x] default state should be an object
 - [] Feeling
   - [] input required
   - [] next button should take you to 'Understanding'
