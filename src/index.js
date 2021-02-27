@@ -20,7 +20,10 @@ const defaultFeedback = {
 const feedbackReducer = (state = defaultFeedback, action) => {
   switch (action.type) {
     case 'UPDATE_FEEDBACK':
-      return { ...state, [action.payload]: action.payload };
+      return {
+        ...state,
+        [action.payload.property]: action.payload.value,
+      };
     case 'CLEAR_FEEDBACK':
       return defaultFeedback;
     default:
