@@ -19,9 +19,9 @@
   - [x] next button should take you to 'Review'
 - [x] Review page that displays answers given
   - [x] submit page should send to the db and push the uder to the submit success page
-- [] Submit page showing that submit was successful
-  - [] provide button that takes you back to the landing page to restart survey
-  - [] button should clear the survey fields
+- [x] Submit page showing that submit was successful
+  - [x] provide button that takes you back to the landing page to restart survey
+  - [x] button should clear the survey fields
 
 ### For Later
 
