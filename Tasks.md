@@ -1,7 +1,8 @@
 ## To-Do
+
 - [x] Create all components
-- [] Wire components to App
-- [] Create routes
+- [x] Wire components to App
+- [x] Create routes
 - [] Create store
   - [] one store to hold answers
   - [] default state should be an object
@@ -23,9 +24,11 @@
   - [] button should clear the survey fields
 
 ### For Later
+
 - [] Styling with Material UI
 
 ### Stretch Goals
+
 - [] Ability to change scores from review page
 - [] Admin Page
   - [] shows all existing feedback in a table
