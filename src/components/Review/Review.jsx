@@ -7,6 +7,7 @@ function Review() {
   const history = useHistory();
 
   const handleSubmit = () => {
+    // Sends feedback data to the server
     axios
       .post('/api/feedback', feedback)
       .then((res) => {
@@ -15,11 +16,11 @@ function Review() {
       .catch((err) => {
         console.log('Error in post', err);
       });
-  };
+  }; // end handleSubmit
 
   const handleBack = () => {
     history.push('/comments');
-  };
+  }; // end handleBack
 
   return (
     <>

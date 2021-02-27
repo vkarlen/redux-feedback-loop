@@ -1,30 +1,40 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 function Understanding() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [understandNum, setUnderstandNum] = useState('');
+  // Sets up local state. If there is already a value in
+  //  the store, it sets it as that (like when back button
+  //  is used)
+  const [understandNum, setUnderstandNum] = useState(
+    useSelector((store) => store.feedbackReducer.understanding)
+  );
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    dispatch({
-      type: 'UPDATE_FEEDBACK',
-      payload: {
-        property: 'understanding',
-        value: understandNum,
-      },
-    });
+    // Validates input before sending to the store
+    if (understandNum && understandNum >= 1 && understandNum <= 5) {
+      dispatch({
+        type: 'UPDATE_FEEDBACK',
+        payload: {
+          property: 'understanding',
+          value: understandNum,
+        },
+      });
 
-    history.push('/supported');
-  };
+      history.push('/supported');
+    } else {
+      alert('Please enter a number between 1 and 5.');
+    }
+  }; // end handleSubmit
 
   const handleBack = () => {
     history.push('/feeling');
-  };
+  }; // end handleBack
 
   return (
     <div>
@@ -39,7 +49,6 @@ function Understanding() {
             name="understanding"
             value={understandNum}
             onChange={(evt) => setUnderstandNum(evt.target.value)}
-            required
           ></input>
         </label>
       </form>

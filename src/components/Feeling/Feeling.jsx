@@ -1,30 +1,36 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 function Feeling() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [feelingNum, setFeelingNum] = useState('');
+  // Sets up local state. If there is already a value in
+  //  the store, it sets it as that (like when back button
+  //  is used)
+  const [feelingNum, setFeelingNum] = useState(
+    useSelector((store) => store.feedbackReducer.feeling)
+  );
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    dispatch({
-      type: 'UPDATE_FEEDBACK',
-      payload: {
-        property: 'feeling',
-        value: feelingNum,
-      },
-    });
+    // Validates input before sending to the store
+    if (feelingNum && feelingNum >= 1 && feelingNum <= 5) {
+      dispatch({
+        type: 'UPDATE_FEEDBACK',
+        payload: {
+          property: 'feeling',
+          value: feelingNum,
+        },
+      });
 
-    history.push('/understanding');
-  };
-
-  const handleBack = () => {
-    history.push('/');
-  };
+      history.push('/understanding');
+    } else {
+      alert('Please enter a number between 1 and 5.');
+    }
+  }; // end handleSubmit
 
   return (
     <div>
@@ -44,9 +50,6 @@ function Feeling() {
         </label>
       </form>
       <div>
-        <button name="back" onClick={handleBack}>
-          Back
-        </button>
         <button name="next" onClick={handleSubmit}>
           Next
         </button>

@@ -26,10 +26,11 @@
 ### For Later
 
 - [] Styling with Material UI
+- [x] Add new alerts
 
 ### Stretch Goals
 
-- [] Ability to change scores from review page
+- [x] Ability to change scores from review page
 - [] Admin Page
   - [] shows all existing feedback in a table
   - [] allows user to delete feedback
