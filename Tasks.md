@@ -6,15 +6,15 @@
 - [x] Create store
   - [x] one store to hold answers
   - [x] default state should be an object
-- [] Feeling
-  - [] input required
-  - [] next button should take you to 'Understanding'
-- [] Understanding
-  - [] input required
-  - [] next button should take you to 'Supported'
-- [] Supported
-  - [] input required
-  - [] next button should take you to 'Comments'
+- [x] Feeling
+  - [x] input required
+  - [x] next button should take you to 'Understanding'
+- [x] Understanding
+  - [x] input required
+  - [x] next button should take you to 'Supported'
+- [x] Supported
+  - [x] input required
+  - [x] next button should take you to 'Comments'
 - [] Comments
   - [] next button should take you to 'Review'
 - [] Review page that displays answers given
