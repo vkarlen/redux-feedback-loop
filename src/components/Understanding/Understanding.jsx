@@ -22,6 +22,10 @@ function Understanding() {
     history.push('/supported');
   };
 
+  const handleBack = () => {
+    history.push('/feeling');
+  };
+
   return (
     <div>
       <h2>How well are you understanding the content?</h2>
@@ -37,9 +41,16 @@ function Understanding() {
             onChange={(evt) => setUnderstandNum(evt.target.value)}
             required
           ></input>
-          <button name="Next">Next</button>
         </label>
       </form>
+      <div>
+        <button name="back" onClick={handleBack}>
+          Back
+        </button>
+        <button name="next" onClick={handleSubmit}>
+          Next
+        </button>
+      </div>
     </div>
   );
 }

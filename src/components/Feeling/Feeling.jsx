@@ -22,6 +22,10 @@ function Feeling() {
     history.push('/understanding');
   };
 
+  const handleBack = () => {
+    history.push('/');
+  };
+
   return (
     <div>
       <h2>How are you feeling today?</h2>
@@ -37,9 +41,16 @@ function Feeling() {
             onChange={(evt) => setFeelingNum(evt.target.value)}
             required
           ></input>
-          <button name="Next">Next</button>
         </label>
       </form>
+      <div>
+        <button name="back" onClick={handleBack}>
+          Back
+        </button>
+        <button name="next" onClick={handleSubmit}>
+          Next
+        </button>
+      </div>
     </div>
   );
 }

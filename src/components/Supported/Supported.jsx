@@ -22,6 +22,10 @@ function Supported() {
     history.push('/comments');
   };
 
+  const handleBack = () => {
+    history.push('/understanding');
+  };
+
   return (
     <div>
       <h2>How well are you being supported?</h2>
@@ -37,9 +41,16 @@ function Supported() {
             onChange={(evt) => setSupportNum(evt.target.value)}
             required
           ></input>
-          <button name="Next">Next</button>
         </label>
       </form>
+      <div>
+        <button name="back" onClick={handleBack}>
+          Back
+        </button>
+        <button name="next" onClick={handleSubmit}>
+          Next
+        </button>
+      </div>
     </div>
   );
 }

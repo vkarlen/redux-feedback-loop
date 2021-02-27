@@ -22,6 +22,10 @@ function Comments() {
     history.push('/review');
   };
 
+  const handleBack = () => {
+    history.push('/supported');
+  };
+
   return (
     <div>
       <h2>Any comments you want to leave?</h2>
@@ -34,9 +38,16 @@ function Comments() {
             value={newComments}
             onChange={(evt) => setUnderstandNum(evt.target.value)}
           ></input>
-          <button name="Next">Next</button>
         </label>
       </form>
+      <div>
+        <button name="back" onClick={handleBack}>
+          Back
+        </button>
+        <button name="next" onClick={handleSubmit}>
+          Next
+        </button>
+      </div>
     </div>
   );
 }
