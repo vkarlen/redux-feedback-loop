@@ -18,6 +18,8 @@ function Feeling() {
         value: feelingNum,
       },
     });
+
+    history.push('/understanding');
   };
 
   return (
@@ -35,7 +37,7 @@ function Feeling() {
             onChange={(evt) => setFeelingNum(evt.target.value)}
             required
           ></input>
-          <button>Next</button>
+          <button name="Next">Next</button>
         </label>
       </form>
     </div>
