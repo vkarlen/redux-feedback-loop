@@ -7,6 +7,7 @@ function Review() {
   const history = useHistory();
 
   const handleSubmit = () => {
+    // Sends feedback data to the server
     axios
       .post('/api/feedback', feedback)
       .then((res) => {
@@ -15,19 +16,30 @@ function Review() {
       .catch((err) => {
         console.log('Error in post', err);
       });
-  };
+  }; // end handleSubmit
+
+  const handleBack = () => {
+    history.push('/comments');
+  }; // end handleBack
 
   return (
-    <div>
-      <h2>Review Your Feedback</h2>
-      <p>Feelings: {feedback.feeling}</p>
-      <p>Understanding: {feedback.understanding}</p>
-      <p>Support: {feedback.supported}</p>
-      <p>Comments: {feedback.comments}</p>
-      <button name="submit" onClick={handleSubmit}>
-        Submit
-      </button>
-    </div>
+    <>
+      <div>
+        <h2>Review Your Feedback</h2>
+        <p>Feelings: {feedback.feeling}</p>
+        <p>Understanding: {feedback.understanding}</p>
+        <p>Support: {feedback.supported}</p>
+        <p>Comments: {feedback.comments}</p>
+      </div>
+      <div>
+        <button name="back" onClick={handleBack}>
+          Back
+        </button>
+        <button name="submit" onClick={handleSubmit}>
+          Submit
+        </button>
+      </div>
+    </>
   );
 }
 

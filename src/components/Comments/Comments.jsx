@@ -1,16 +1,20 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 function Comments() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [newComments, setUnderstandNum] = useState('');
+  // Sets up local state. If there is already a value in
+  //  the store, it sets it as that (like when back button
+  //  is used)
+  const [newComments, setNewComment] = useState(
+    useSelector((store) => store.feedbackReducer.comments)
+  );
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-
     dispatch({
       type: 'UPDATE_FEEDBACK',
       payload: {
@@ -20,7 +24,11 @@ function Comments() {
     });
 
     history.push('/review');
-  };
+  }; // end handleSubmit
+
+  const handleBack = () => {
+    history.push('/supported');
+  }; // end handleBack
 
   return (
     <div>
@@ -32,11 +40,18 @@ function Comments() {
             type="text"
             name="comments"
             value={newComments}
-            onChange={(evt) => setUnderstandNum(evt.target.value)}
+            onChange={(evt) => setNewComment(evt.target.value)}
           ></input>
-          <button name="Next">Next</button>
         </label>
       </form>
+      <div>
+        <button name="back" onClick={handleBack}>
+          Back
+        </button>
+        <button name="next" onClick={handleSubmit}>
+          Next
+        </button>
+      </div>
     </div>
   );
 }
