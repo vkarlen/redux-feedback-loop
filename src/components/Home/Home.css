@@ -1,0 +1,9 @@
+#startBtn {
+  width: 300px;
+  margin-top: 25px;
+}
+
+#ratingContainer {
+  max-width: 300px;
+  margin: 10px auto;
+}

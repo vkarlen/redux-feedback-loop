@@ -1,10 +1,27 @@
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+
+import SurveySteps from '../SurveySteps/SurveySteps';
+
+// Martial-UI Imports
+import { Button, Container, Paper, Grid } from '@material-ui/core';
 
 function Review() {
   const feedback = useSelector((store) => store.feedbackReducer);
   const history = useHistory();
+
+  const [errors, setErrors] = useState(false);
+
+  // Checks for errors on load
+  useEffect(() => {
+    if (feedback.feeling && feedback.understanding && feedback.supported) {
+      setErrors(false);
+    } else {
+      setErrors(true);
+    }
+  }, []); // end useEffect
 
   const handleSubmit = () => {
     // Sends feedback data to the server
@@ -23,23 +40,40 @@ function Review() {
   }; // end handleBack
 
   return (
-    <>
-      <div>
-        <h2>Review Your Feedback</h2>
-        <p>Feelings: {feedback.feeling}</p>
-        <p>Understanding: {feedback.understanding}</p>
-        <p>Support: {feedback.supported}</p>
-        <p>Comments: {feedback.comments}</p>
-      </div>
-      <div>
-        <button name="back" onClick={handleBack}>
-          Back
-        </button>
-        <button name="submit" onClick={handleSubmit}>
-          Submit
-        </button>
-      </div>
-    </>
+    <Container maxWidth="sm">
+      <Paper elevation={2} className="formContainer">
+        <SurveySteps />
+        <Grid container spacing={4} justify="center">
+          <Grid item xs={12}>
+            <h2>Review Your Feedback</h2>
+            <p>Feelings: {feedback.feeling}</p>
+            <p>Understanding: {feedback.understanding}</p>
+            <p>Support: {feedback.supported}</p>
+            <p>Comments: {feedback.comments}</p>
+          </Grid>
+          <Grid item sx={1}>
+            <Button
+              variant="contained"
+              color="secondary"
+              name="back"
+              onClick={handleBack}
+            >
+              Back
+            </Button>
+            &nbsp;
+            <Button
+              variant="contained"
+              color="primary"
+              name="next"
+              onClick={handleSubmit}
+              disabled={errors ? true : null}
+            >
+              Submit
+            </Button>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Container>
   );
 }
 

@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import SurveySteps from '../SurveySteps/SurveySteps';
+
+// Martial-UI Imports
+import { Button, Container, TextField, Paper, Grid } from '@material-ui/core';
+
 function Supported() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -12,12 +17,13 @@ function Supported() {
   const [supportNum, setSupportNum] = useState(
     useSelector((store) => store.feedbackReducer.supported)
   );
+  const [errors, setErrors] = useState(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    // Validates input before sending to the store
-    if (supportNum && supportNum >= 1 && supportNum <= 5) {
+    // Double checks there are no errors
+    if (!errors && supportNum) {
       dispatch({
         type: 'UPDATE_FEEDBACK',
         payload: {
@@ -28,40 +34,74 @@ function Supported() {
 
       history.push('/comments');
     } else {
-      alert('Please enter a number between 1 and 5.');
+      setErrors(true);
     }
   }; // end handleSubmit
 
+  const handleChange = (evt) => {
+    let input = evt.target.value;
+
+    // Validate that input is acceptable
+    if (input <= 0 || input > 5) {
+      setErrors(true);
+    } else {
+      setErrors(false);
+    }
+
+    setSupportNum(evt.target.value);
+  }; // end handleChange
+
   const handleBack = () => {
     history.push('/understanding');
-  }; // end handleBack
+  }; // end handleSubmit
 
   return (
-    <div>
-      <h2>How well are you being supported?</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Support?
-          <input
-            type="number"
-            min="1"
-            max="5"
-            name="supported"
-            value={supportNum}
-            onChange={(evt) => setSupportNum(evt.target.value)}
-            required
-          ></input>
-        </label>
-      </form>
-      <div>
-        <button name="back" onClick={handleBack}>
-          Back
-        </button>
-        <button name="next" onClick={handleSubmit}>
-          Next
-        </button>
-      </div>
-    </div>
+    <Container maxWidth="sm">
+      <Paper elevation={2} className="formContainer">
+        <SurveySteps />
+        <Grid container spacing={4} justify="center">
+          <Grid item xs={12}>
+            <h2>How well are you being supported?</h2>
+            <form onSubmit={handleSubmit}>
+              <TextField
+                id="filled-number"
+                label="Enter 1 - 5"
+                type="number"
+                variant="standard"
+                min="1"
+                max="5"
+                name="supported"
+                value={supportNum}
+                onChange={(evt) => handleChange(evt)}
+                error={errors ? true : null}
+                helperText={errors ? 'Please enter a valid input' : null}
+              />
+            </form>
+          </Grid>
+          <Grid item sx={1}>
+            <Button
+              variant="contained"
+              color="secondary"
+              name="back"
+              onClick={handleBack}
+              disabled={errors ? true : null}
+            >
+              Back
+            </Button>
+            &nbsp;
+            <Button
+              variant="contained"
+              color="primary"
+              name="next"
+              onClick={handleSubmit}
+              disabled={errors ? true : null}
+            >
+              Next
+            </Button>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Container>
   );
 }
 

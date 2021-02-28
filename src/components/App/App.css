@@ -5,19 +5,41 @@
 .App-header {
   background-color: #033076;
   min-height: 70px;
-  padding: 20px;
+  padding: 5px;
   color: white;
   margin-bottom: 20px;
 }
 
 .App-title {
-  font-size: 2em;
+  font-size: 3.5em;
+  font-family: 'Merriweather', serif;
+  margin: 10px;
 }
 
 .App-intro {
   font-size: large;
 }
 
+h2 {
+  font-family: 'Merriweather', serif;
+  margin-bottom: 30px;
+}
+
 h4 {
   font-style: italic;
+  margin: 10px;
+}
+
+body {
+  background-color: rgb(238, 238, 238);
+  font-family: 'Roboto', sans-serif;
+}
+
+Button {
+  width: 90px;
+}
+
+.formContainer {
+  margin-top: 50px;
+  padding: 30px;
 }

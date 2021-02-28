@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import SurveySteps from '../SurveySteps/SurveySteps';
+
+// Martial-UI Imports
+import { Button, Container, TextField, Paper, Grid } from '@material-ui/core';
+
 function Feeling() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -12,12 +17,13 @@ function Feeling() {
   const [feelingNum, setFeelingNum] = useState(
     useSelector((store) => store.feedbackReducer.feeling)
   );
+  const [errors, setErrors] = useState(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    // Validates input before sending to the store
-    if (feelingNum && feelingNum >= 1 && feelingNum <= 5) {
+    // Double checks there are no errors
+    if (!errors && feelingNum) {
       dispatch({
         type: 'UPDATE_FEEDBACK',
         payload: {
@@ -28,33 +34,60 @@ function Feeling() {
 
       history.push('/understanding');
     } else {
-      alert('Please enter a number between 1 and 5.');
+      setErrors(true);
     }
   }; // end handleSubmit
 
+  const handleChange = (evt) => {
+    let input = evt.target.value;
+
+    // Validate that input is acceptable
+    if (input <= 0 || input > 5) {
+      setErrors(true);
+    } else {
+      setErrors(false);
+    }
+
+    setFeelingNum(evt.target.value);
+  }; // end handleChange
+
   return (
-    <div>
-      <h2>How are you feeling today?</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Feeling?
-          <input
-            type="number"
-            min="1"
-            max="5"
-            name="feeling"
-            value={feelingNum}
-            onChange={(evt) => setFeelingNum(evt.target.value)}
-            required
-          ></input>
-        </label>
-      </form>
-      <div>
-        <button name="next" onClick={handleSubmit}>
-          Next
-        </button>
-      </div>
-    </div>
+    <Container maxWidth="sm">
+      <Paper elevation={2} className="formContainer">
+        <SurveySteps />
+        <Grid container spacing={4} justify="center">
+          <Grid item xs={12}>
+            <h2>How are you feeling today?</h2>
+            <form onSubmit={handleSubmit}>
+              <TextField
+                id="filled-number"
+                label="Enter 1 - 5"
+                type="number"
+                variant="standard"
+                min="1"
+                max="5"
+                name="feeling"
+                value={feelingNum}
+                onChange={(evt) => handleChange(evt)}
+                error={errors ? true : null}
+                helperText={errors ? 'Please enter a valid input' : null}
+              />
+            </form>
+          </Grid>
+          <Grid item sx={1}>
+            <Button
+              variant="contained"
+              color="primary"
+              name="next"
+              onClick={handleSubmit}
+              disabled={errors ? true : null}
+            >
+              Next
+            </Button>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Container>
   );
 }
 

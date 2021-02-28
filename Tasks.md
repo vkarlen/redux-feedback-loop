@@ -25,7 +25,7 @@
 
 ### For Later
 
-- [] Styling with Material UI
+- [x] Styling with Material UI
 - [x] Add new alerts
 
 ### Stretch Goals
