@@ -21,7 +21,7 @@ function Supported() {
     evt.preventDefault();
 
     // Double checks there are no errors
-    if (!errors) {
+    if (!errors && supportNum) {
       dispatch({
         type: 'UPDATE_FEEDBACK',
         payload: {
@@ -32,7 +32,7 @@ function Supported() {
 
       history.push('/comments');
     } else {
-      alert('Please enter a number between 1 and 5.');
+      setErrors(true);
     }
   }; // end handleSubmit
 
@@ -71,7 +71,7 @@ function Supported() {
                 value={supportNum}
                 onChange={(evt) => handleChange(evt)}
                 error={errors ? true : null}
-                helperText={errors ? 'Must be a number, 1-5' : null}
+                helperText={errors ? 'Please enter a valid input' : null}
               />
             </form>
           </Grid>

@@ -21,7 +21,7 @@ function Feeling() {
     evt.preventDefault();
 
     // Double checks there are no errors
-    if (!errors) {
+    if (!errors && feelingNum) {
       dispatch({
         type: 'UPDATE_FEEDBACK',
         payload: {
@@ -31,6 +31,8 @@ function Feeling() {
       });
 
       history.push('/understanding');
+    } else {
+      setErrors(true);
     }
   }; // end handleSubmit
 
@@ -65,7 +67,7 @@ function Feeling() {
                 value={feelingNum}
                 onChange={(evt) => handleChange(evt)}
                 error={errors ? true : null}
-                helperText={errors ? 'Must be a number, 1-5' : null}
+                helperText={errors ? 'Please enter a valid input' : null}
               />
             </form>
           </Grid>

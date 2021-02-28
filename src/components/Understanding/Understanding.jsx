@@ -21,7 +21,7 @@ function Understanding() {
     evt.preventDefault();
 
     // Double checks there are no errors
-    if (!errors) {
+    if (!errors && understandNum) {
       dispatch({
         type: 'UPDATE_FEEDBACK',
         payload: {
@@ -31,6 +31,8 @@ function Understanding() {
       });
 
       history.push('/supported');
+    } else {
+      setErrors(true);
     }
   }; // end handleSubmit
 
@@ -70,7 +72,7 @@ function Understanding() {
                 value={understandNum}
                 onChange={(evt) => handleChange(evt)}
                 error={errors ? true : null}
-                helperText={errors ? 'Must be a number, 1-5' : null}
+                helperText={errors ? 'Please enter a valid input' : null}
               />
             </form>
           </Grid>
