@@ -15,12 +15,13 @@ function Understanding() {
   const [understandNum, setUnderstandNum] = useState(
     useSelector((store) => store.feedbackReducer.understanding)
   );
+  const [errors, setErrors] = useState(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    // Validates input before sending to the store
-    if (understandNum && understandNum >= 1 && understandNum <= 5) {
+    // Double checks there are no errors
+    if (!errors) {
       dispatch({
         type: 'UPDATE_FEEDBACK',
         payload: {
@@ -30,10 +31,21 @@ function Understanding() {
       });
 
       history.push('/supported');
-    } else {
-      alert('Please enter a number between 1 and 5.');
     }
   }; // end handleSubmit
+
+  const handleChange = (evt) => {
+    let input = evt.target.value;
+
+    // Validate that input is acceptable
+    if (input <= 0 || input > 5) {
+      setErrors(true);
+    } else {
+      setErrors(false);
+    }
+
+    setUnderstandNum(evt.target.value);
+  }; // end handleChange
 
   const handleBack = () => {
     history.push('/feeling');
@@ -56,7 +68,9 @@ function Understanding() {
                 max="5"
                 name="understanding"
                 value={understandNum}
-                onChange={(evt) => setUnderstandNum(evt.target.value)}
+                onChange={(evt) => handleChange(evt)}
+                error={Boolean(errors ? true : null)}
+                helperText={errors ? 'Must be a number, 1-5' : null}
               />
             </form>
           </Grid>
@@ -66,6 +80,7 @@ function Understanding() {
               color="secondary"
               name="back"
               onClick={handleBack}
+              disabled={Boolean(errors ? true : null)}
             >
               Back
             </Button>
@@ -75,6 +90,7 @@ function Understanding() {
               color="primary"
               name="next"
               onClick={handleSubmit}
+              disabled={Boolean(errors ? true : null)}
             >
               Next
             </Button>

@@ -15,12 +15,13 @@ function Feeling() {
   const [feelingNum, setFeelingNum] = useState(
     useSelector((store) => store.feedbackReducer.feeling)
   );
+  const [errors, setErrors] = useState(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    // Validates input before sending to the store
-    if (feelingNum && feelingNum >= 1 && feelingNum <= 5) {
+    // Double checks there are no errors
+    if (!errors) {
       dispatch({
         type: 'UPDATE_FEEDBACK',
         payload: {
@@ -30,10 +31,21 @@ function Feeling() {
       });
 
       history.push('/understanding');
-    } else {
-      alert('Please enter a number between 1 and 5.');
     }
   }; // end handleSubmit
+
+  const handleChange = (evt) => {
+    let input = evt.target.value;
+
+    // Validate that input is acceptable
+    if (input <= 0 || input > 5) {
+      setErrors(true);
+    } else {
+      setErrors(false);
+    }
+
+    setFeelingNum(evt.target.value);
+  }; // end handleChange
 
   return (
     <Container maxWidth="sm">
@@ -51,7 +63,9 @@ function Feeling() {
                 max="5"
                 name="feeling"
                 value={feelingNum}
-                onChange={(evt) => setFeelingNum(evt.target.value)}
+                onChange={(evt) => handleChange(evt)}
+                error={Boolean(errors ? true : null)}
+                helperText={errors ? 'Must be a number, 1-5' : null}
               />
             </form>
           </Grid>
@@ -61,6 +75,7 @@ function Feeling() {
               color="primary"
               name="next"
               onClick={handleSubmit}
+              disabled={Boolean(errors ? true : null)}
             >
               Next
             </Button>

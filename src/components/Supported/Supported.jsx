@@ -15,12 +15,13 @@ function Supported() {
   const [supportNum, setSupportNum] = useState(
     useSelector((store) => store.feedbackReducer.supported)
   );
+  const [errors, setErrors] = useState(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    // Validates input before sending to the store
-    if (supportNum && supportNum >= 1 && supportNum <= 5) {
+    // Double checks there are no errors
+    if (!errors) {
       dispatch({
         type: 'UPDATE_FEEDBACK',
         payload: {
@@ -34,6 +35,19 @@ function Supported() {
       alert('Please enter a number between 1 and 5.');
     }
   }; // end handleSubmit
+
+  const handleChange = (evt) => {
+    let input = evt.target.value;
+
+    // Validate that input is acceptable
+    if (input <= 0 || input > 5) {
+      setErrors(true);
+    } else {
+      setErrors(false);
+    }
+
+    setSupportNum(evt.target.value);
+  }; // end handleChange
 
   const handleBack = () => {
     history.push('/understanding');
@@ -55,7 +69,9 @@ function Supported() {
                 max="5"
                 name="supported"
                 value={supportNum}
-                onChange={(evt) => setSupportNum(evt.target.value)}
+                onChange={(evt) => handleChange(evt)}
+                error={Boolean(errors ? true : null)}
+                helperText={errors ? 'Must be a number, 1-5' : null}
               />
             </form>
           </Grid>
@@ -65,6 +81,7 @@ function Supported() {
               color="secondary"
               name="back"
               onClick={handleBack}
+              disabled={Boolean(errors ? true : null)}
             >
               Back
             </Button>
@@ -74,6 +91,7 @@ function Supported() {
               color="primary"
               name="next"
               onClick={handleSubmit}
+              disabled={Boolean(errors ? true : null)}
             >
               Next
             </Button>
