@@ -27,12 +27,15 @@
 
 - [x] Styling with Material UI
 - [x] Add new alerts
+- [] Bring in icons
 
 ### Stretch Goals
 
 - [x] Ability to change scores from review page
 - [] Admin Page
-  - [] shows all existing feedback in a table
-  - [] allows user to delete feedback
+  - [x] shows all existing feedback in a table
+  - [x] allows user to delete feedback
   - [] confirm delete alert
+  - [x] style the table and cry
+  - [x] moments.js
 - [] Deploy to heroku
