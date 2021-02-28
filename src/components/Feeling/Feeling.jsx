@@ -64,7 +64,7 @@ function Feeling() {
                 name="feeling"
                 value={feelingNum}
                 onChange={(evt) => handleChange(evt)}
-                error={Boolean(errors ? true : null)}
+                error={errors ? true : null}
                 helperText={errors ? 'Must be a number, 1-5' : null}
               />
             </form>
@@ -75,7 +75,7 @@ function Feeling() {
               color="primary"
               name="next"
               onClick={handleSubmit}
-              disabled={Boolean(errors ? true : null)}
+              disabled={errors ? true : null}
             >
               Next
             </Button>

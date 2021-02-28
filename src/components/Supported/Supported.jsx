@@ -70,7 +70,7 @@ function Supported() {
                 name="supported"
                 value={supportNum}
                 onChange={(evt) => handleChange(evt)}
-                error={Boolean(errors ? true : null)}
+                error={errors ? true : null}
                 helperText={errors ? 'Must be a number, 1-5' : null}
               />
             </form>
@@ -81,7 +81,7 @@ function Supported() {
               color="secondary"
               name="back"
               onClick={handleBack}
-              disabled={Boolean(errors ? true : null)}
+              disabled={errors ? true : null}
             >
               Back
             </Button>
@@ -91,7 +91,7 @@ function Supported() {
               color="primary"
               name="next"
               onClick={handleSubmit}
-              disabled={Boolean(errors ? true : null)}
+              disabled={errors ? true : null}
             >
               Next
             </Button>

@@ -69,7 +69,7 @@ function Understanding() {
                 name="understanding"
                 value={understandNum}
                 onChange={(evt) => handleChange(evt)}
-                error={Boolean(errors ? true : null)}
+                error={errors ? true : null}
                 helperText={errors ? 'Must be a number, 1-5' : null}
               />
             </form>
@@ -80,7 +80,7 @@ function Understanding() {
               color="secondary"
               name="back"
               onClick={handleBack}
-              disabled={Boolean(errors ? true : null)}
+              disabled={errors ? true : null}
             >
               Back
             </Button>
@@ -90,7 +90,7 @@ function Understanding() {
               color="primary"
               name="next"
               onClick={handleSubmit}
-              disabled={Boolean(errors ? true : null)}
+              disabled={errors ? true : null}
             >
               Next
             </Button>
