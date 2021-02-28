@@ -38,4 +38,20 @@ router.get('/', (req, res) => {
     });
 });
 
+router.delete('/:id', (req, res) => {
+  console.log('in delete');
+  const feedbackID = req.params.id;
+  const sqlScript = `DELETE FROM "feedback" WHERE "id"=$1`;
+
+  pool
+    .query(sqlScript, [feedbackID])
+    .then((dbRes) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log('Error in delete', err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

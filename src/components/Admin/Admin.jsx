@@ -38,6 +38,15 @@ function Admin() {
 
   const handleDelete = (feedback) => {
     console.log(feedback.id);
+
+    axios
+      .delete(`/api/feedback/${feedback.id}`)
+      .then((res) => {
+        getFeedback();
+      })
+      .catch((err) => {
+        console.log('Error in post', err);
+      });
   }; //end handleDelete
 
   return (
