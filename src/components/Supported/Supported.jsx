@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+// Martial-UI Imports
+import { Button, Container, TextField, Paper, Grid } from '@material-ui/core';
+
 function Supported() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -34,34 +37,50 @@ function Supported() {
 
   const handleBack = () => {
     history.push('/understanding');
-  }; // end handleBack
+  }; // end handleSubmit
 
   return (
-    <div>
-      <h2>How well are you being supported?</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Support?
-          <input
-            type="number"
-            min="1"
-            max="5"
-            name="supported"
-            value={supportNum}
-            onChange={(evt) => setSupportNum(evt.target.value)}
-            required
-          ></input>
-        </label>
-      </form>
-      <div>
-        <button name="back" onClick={handleBack}>
-          Back
-        </button>
-        <button name="next" onClick={handleSubmit}>
-          Next
-        </button>
-      </div>
-    </div>
+    <Container maxWidth="sm">
+      <Paper elevation={2} className="formContainer">
+        <Grid container spacing={4} justify="center">
+          <Grid item xs={12}>
+            <h2>How well are you being supported?</h2>
+            <form onSubmit={handleSubmit}>
+              <TextField
+                id="filled-number"
+                label="Enter 1 - 5"
+                type="number"
+                variant="standard"
+                min="1"
+                max="5"
+                name="supported"
+                value={supportNum}
+                onChange={(evt) => setSupportNum(evt.target.value)}
+              />
+            </form>
+          </Grid>
+          <Grid item sx={1}>
+            <Button
+              variant="contained"
+              color="secondary"
+              name="back"
+              onClick={handleBack}
+            >
+              Back
+            </Button>
+            &nbsp;
+            <Button
+              variant="contained"
+              color="primary"
+              name="next"
+              onClick={handleSubmit}
+            >
+              Next
+            </Button>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Container>
   );
 }
 

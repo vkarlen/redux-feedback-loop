@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import './Comments.css';
+
+// Martial-UI Imports
+import { Button, Container, TextField, Paper, Grid } from '@material-ui/core';
 
 function Comments() {
   const dispatch = useDispatch();
@@ -31,28 +35,47 @@ function Comments() {
   }; // end handleBack
 
   return (
-    <div>
-      <h2>Any comments you want to leave?</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Comments
-          <input
-            type="text"
-            name="comments"
-            value={newComments}
-            onChange={(evt) => setNewComment(evt.target.value)}
-          ></input>
-        </label>
-      </form>
-      <div>
-        <button name="back" onClick={handleBack}>
-          Back
-        </button>
-        <button name="next" onClick={handleSubmit}>
-          Next
-        </button>
-      </div>
-    </div>
+    <Container maxWidth="sm">
+      <Paper elevation={2} className="formContainer">
+        <Grid container spacing={4} justify="center">
+          <Grid item xs={12}>
+            <h2>Any comments you want to leave?</h2>
+            <form onSubmit={handleSubmit}>
+              <TextField
+                id="standard-multiline-flexible"
+                label="Type here"
+                type="text"
+                name="comments"
+                multiline
+                rowsMax={6}
+                fullWidth="true"
+                value={newComments}
+                onChange={(evt) => setNewComment(evt.target.value)}
+              />
+            </form>
+          </Grid>
+          <Grid item sx={1}>
+            <Button
+              variant="contained"
+              color="secondary"
+              name="back"
+              onClick={handleBack}
+            >
+              Back
+            </Button>
+            &nbsp;
+            <Button
+              variant="contained"
+              color="primary"
+              name="next"
+              onClick={handleSubmit}
+            >
+              Finish
+            </Button>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Container>
   );
 }
 
