@@ -22,6 +22,7 @@ function Submitted() {
   return (
     <div>
       <h2>Thank you for your feedback!</h2>
+
       <Button
         variant="contained"
         color="primary"

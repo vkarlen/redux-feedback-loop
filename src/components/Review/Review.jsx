@@ -15,7 +15,7 @@ function Review() {
 
   const [errors, setErrors] = useState(false);
 
-  // Checks for errors on load
+  // Checks for errors on load to toggle buttons
   useEffect(() => {
     if (feedback.feeling && feedback.understanding && feedback.supported) {
       setErrors(false);
@@ -29,6 +29,7 @@ function Review() {
     axios
       .post('/api/feedback', feedback)
       .then((res) => {
+        // Moves user to the next page
         history.push('/submit');
       })
       .catch((err) => {
@@ -37,6 +38,7 @@ function Review() {
   }; // end handleSubmit
 
   const handleBack = () => {
+    // Moves the user to the previous step
     history.push('/comments');
   }; // end handleBack
 
@@ -44,6 +46,7 @@ function Review() {
     <Container maxWidth="sm">
       <Paper elevation={2} className="formContainer">
         <SurveySteps />
+
         <Grid container spacing={4} justify="center">
           <Grid item xs={12}>
             <h2>Review Your Feedback</h2>
@@ -52,6 +55,7 @@ function Review() {
             <p>Support: {feedback.supported}</p>
             <p>Comments: {feedback.comments}</p>
           </Grid>
+
           <Grid item sx={1}>
             <Button variant="contained" color="secondary" onClick={handleBack}>
               <ArrowBackIos />

@@ -23,8 +23,9 @@ function Understanding() {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    // Double checks there are no errors
+    // Double checks validation
     if (!errors && understandNum) {
+      // sends update request to store
       dispatch({
         type: 'UPDATE_FEEDBACK',
         payload: {
@@ -33,8 +34,10 @@ function Understanding() {
         },
       });
 
+      // Moves user to next step
       history.push('/supported');
     } else {
+      // change error status if validation fails
       setErrors(true);
     }
   }; // end handleSubmit
@@ -53,6 +56,7 @@ function Understanding() {
   }; // end handleChange
 
   const handleBack = () => {
+    // Move user to the previous step
     history.push('/feeling');
   }; // end handleBack
 

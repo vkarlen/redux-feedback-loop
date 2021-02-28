@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import moment from 'moment';
 import './Admin.css';
+
+import AdminRow from '../AdminRow/AdminRow';
 
 // Martial-UI Imports
 import {
-  Button,
   Paper,
   Container,
   Table,
@@ -14,18 +14,18 @@ import {
   TableCell,
   TableRow,
 } from '@material-ui/core';
-import { Delete } from '@material-ui/icons';
 
 function Admin() {
+  // Get past feedback on page load
   useEffect(() => {
     getFeedback();
   }, []);
 
+  // Local State to store past feedback
   const [previousFeedback, setPreviousFeedback] = useState([]);
 
   const getFeedback = () => {
-    console.log('in get');
-
+    // Grabbing feedback from server
     axios
       .get('/api/feedback')
       .then((res) => {
@@ -38,8 +38,7 @@ function Admin() {
   }; // end getFeedback
 
   const handleDelete = (feedback) => {
-    console.log(feedback.id);
-
+    // Sending delete request to server
     axios
       .delete(`/api/feedback/${feedback.id}`)
       .then((res) => {
@@ -70,26 +69,11 @@ function Admin() {
           <TableBody>
             {previousFeedback.map((entry) => {
               return (
-                <TableRow key={entry.id}>
-                  <TableCell align="center">
-                    {moment(entry.date).format('L')}
-                  </TableCell>
-                  <TableCell align="center">{entry.feeling}</TableCell>
-                  <TableCell align="center">{entry.understanding}</TableCell>
-                  <TableCell align="center">{entry.support}</TableCell>
-                  <TableCell>{entry.comments}</TableCell>
-                  <TableCell align="center">
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      name="delete"
-                      onClick={() => handleDelete(entry)}
-                      style={{ width: '20px' }}
-                    >
-                      <Delete />
-                    </Button>
-                  </TableCell>
-                </TableRow>
+                <AdminRow
+                  key={entry.id}
+                  entry={entry}
+                  handleDelete={handleDelete}
+                />
               );
             })}
           </TableBody>

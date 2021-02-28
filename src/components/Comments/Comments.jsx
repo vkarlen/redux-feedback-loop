@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import './Comments.css';
 
 import SurveySteps from '../SurveySteps/SurveySteps';
 
@@ -22,6 +21,8 @@ function Comments() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+
+    // Sends update request to the store
     dispatch({
       type: 'UPDATE_FEEDBACK',
       payload: {
@@ -30,10 +31,12 @@ function Comments() {
       },
     });
 
+    // Move user to next step
     history.push('/review');
   }; // end handleSubmit
 
   const handleBack = () => {
+    // Move user to previous step
     history.push('/supported');
   }; // end handleBack
 
@@ -50,14 +53,15 @@ function Comments() {
                 label="Type here"
                 type="text"
                 name="comments"
-                multiline
                 rowsMax={6}
-                fullWidth
                 value={newComments}
                 onChange={(evt) => setNewComment(evt.target.value)}
+                multiline
+                fullWidth
               />
             </form>
           </Grid>
+
           <Grid item sx={1}>
             <Button
               variant="contained"

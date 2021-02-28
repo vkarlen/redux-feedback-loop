@@ -25,6 +25,7 @@ function Supported() {
 
     // Double checks there are no errors
     if (!errors && supportNum) {
+      // sends update request to store
       dispatch({
         type: 'UPDATE_FEEDBACK',
         payload: {
@@ -33,8 +34,10 @@ function Supported() {
         },
       });
 
+      // Moves user to next step
       history.push('/comments');
     } else {
+      // change error status if validation fails
       setErrors(true);
     }
   }; // end handleSubmit
@@ -53,6 +56,7 @@ function Supported() {
   }; // end handleChange
 
   const handleBack = () => {
+    // Move user to the previous step
     history.push('/understanding');
   }; // end handleSubmit
 
@@ -63,6 +67,7 @@ function Supported() {
         <Grid container spacing={4} justify="center">
           <Grid item xs={12}>
             <h2>How well are you being supported?</h2>
+
             <form onSubmit={handleSubmit}>
               <TextField
                 id="filled-number"
@@ -79,6 +84,7 @@ function Supported() {
               />
             </form>
           </Grid>
+
           <Grid item sx={1}>
             <Button
               variant="contained"

@@ -23,8 +23,9 @@ function Feeling() {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    // Double checks there are no errors
+    // Double checks validation
     if (!errors && feelingNum) {
+      // sends update request to store
       dispatch({
         type: 'UPDATE_FEEDBACK',
         payload: {
@@ -33,8 +34,10 @@ function Feeling() {
         },
       });
 
+      // Moves user to next step
       history.push('/understanding');
     } else {
+      // change error status if validation fails
       setErrors(true);
     }
   }; // end handleSubmit

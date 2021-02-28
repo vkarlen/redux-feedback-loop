@@ -25,18 +25,22 @@ function Home() {
               <TableCell align="right">5</TableCell>
               <TableCell>Absolutely killin' it!</TableCell>
             </TableRow>
+
             <TableRow>
               <TableCell align="right">4</TableCell>
               <TableCell>Feeling pretty solid.</TableCell>
             </TableRow>
+
             <TableRow>
               <TableCell align="right">3</TableCell>
               <TableCell>Think I'm doing okay.</TableCell>
             </TableRow>
+
             <TableRow>
               <TableCell align="right">2</TableCell>
               <TableCell>This is pretty rough.</TableCell>
             </TableRow>
+
             <TableRow>
               <TableCell align="right">1</TableCell>
               <TableCell>Help me Obi-Wan Kenobi!!</TableCell>
@@ -44,6 +48,7 @@ function Home() {
           </TableBody>
         </Table>
       </Paper>
+
       <Button
         variant="contained"
         color="primary"
