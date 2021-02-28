@@ -13,7 +13,6 @@ import {
   TableHead,
   TableCell,
   TableRow,
-  TablePagination,
 } from '@material-ui/core';
 
 function Admin() {

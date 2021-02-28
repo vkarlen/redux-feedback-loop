@@ -36,7 +36,6 @@
   - [x] shows all existing feedback in a table
   - [x] allows user to delete feedback
   - [] confirm delete alert
-  - [] Only show so many entries per page
-  - [] style the table and cry
+  - [x] style the table and cry
   - [x] moments.js
 - [] Deploy to heroku
