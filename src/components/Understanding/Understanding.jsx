@@ -6,6 +6,7 @@ import SurveySteps from '../SurveySteps/SurveySteps';
 
 // Martial-UI Imports
 import { Button, Container, TextField, Paper, Grid } from '@material-ui/core';
+import { ArrowBackIos, ArrowForwardIos } from '@material-ui/icons';
 
 function Understanding() {
   const dispatch = useDispatch();
@@ -87,6 +88,7 @@ function Understanding() {
               onClick={handleBack}
               disabled={errors ? true : null}
             >
+              <ArrowBackIos />
               Back
             </Button>
             &nbsp;
@@ -98,6 +100,7 @@ function Understanding() {
               disabled={errors ? true : null}
             >
               Next
+              <ArrowForwardIos />
             </Button>
           </Grid>
         </Grid>

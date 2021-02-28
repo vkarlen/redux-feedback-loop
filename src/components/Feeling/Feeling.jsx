@@ -6,6 +6,7 @@ import SurveySteps from '../SurveySteps/SurveySteps';
 
 // Martial-UI Imports
 import { Button, Container, TextField, Paper, Grid } from '@material-ui/core';
+import { ArrowForwardIos } from '@material-ui/icons';
 
 function Feeling() {
   const dispatch = useDispatch();
@@ -83,6 +84,7 @@ function Feeling() {
               disabled={errors ? true : null}
             >
               Next
+              <ArrowForwardIos />
             </Button>
           </Grid>
         </Grid>

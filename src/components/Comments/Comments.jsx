@@ -7,6 +7,7 @@ import SurveySteps from '../SurveySteps/SurveySteps';
 
 // Martial-UI Imports
 import { Button, Container, TextField, Paper, Grid } from '@material-ui/core';
+import { ArrowBackIos, ArrowForwardIos } from '@material-ui/icons';
 
 function Comments() {
   const dispatch = useDispatch();
@@ -64,6 +65,7 @@ function Comments() {
               name="back"
               onClick={handleBack}
             >
+              <ArrowBackIos />
               Back
             </Button>
             &nbsp;
@@ -74,6 +76,7 @@ function Comments() {
               onClick={handleSubmit}
             >
               Finish
+              <ArrowForwardIos />
             </Button>
           </Grid>
         </Grid>
