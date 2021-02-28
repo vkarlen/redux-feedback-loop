@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import SurveySteps from '../SurveySteps/SurveySteps';
+
 // Martial-UI Imports
 import { Button, Container, TextField, Paper, Grid } from '@material-ui/core';
 
@@ -52,6 +54,7 @@ function Feeling() {
   return (
     <Container maxWidth="sm">
       <Paper elevation={2} className="formContainer">
+        <SurveySteps />
         <Grid container spacing={4} justify="center">
           <Grid item xs={12}>
             <h2>How are you feeling today?</h2>

@@ -35,7 +35,7 @@ function Home() {
             </TableRow>
             <TableRow>
               <TableCell align="right">2</TableCell>
-              <TableCell>This is kinda rough.</TableCell>
+              <TableCell>This is pretty rough.</TableCell>
             </TableRow>
             <TableRow>
               <TableCell align="right">1</TableCell>

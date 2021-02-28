@@ -1,13 +1,27 @@
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import SurveySteps from '../SurveySteps/SurveySteps';
+
 // Martial-UI Imports
-import { Button, Container, TextField, Paper, Grid } from '@material-ui/core';
+import { Button, Container, Paper, Grid } from '@material-ui/core';
 
 function Review() {
   const feedback = useSelector((store) => store.feedbackReducer);
   const history = useHistory();
+
+  const [errors, setErrors] = useState(false);
+
+  // Checks for errors on load
+  useEffect(() => {
+    if (feedback.feeling && feedback.understanding && feedback.supported) {
+      setErrors(false);
+    } else {
+      setErrors(true);
+    }
+  }, []); // end useEffect
 
   const handleSubmit = () => {
     // Sends feedback data to the server
@@ -28,6 +42,7 @@ function Review() {
   return (
     <Container maxWidth="sm">
       <Paper elevation={2} className="formContainer">
+        <SurveySteps />
         <Grid container spacing={4} justify="center">
           <Grid item xs={12}>
             <h2>Review Your Feedback</h2>
@@ -51,6 +66,7 @@ function Review() {
               color="primary"
               name="next"
               onClick={handleSubmit}
+              disabled={errors ? true : null}
             >
               Submit
             </Button>
