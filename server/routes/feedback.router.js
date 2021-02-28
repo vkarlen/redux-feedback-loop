@@ -26,4 +26,9 @@ router.post('/', (req, res) => {
     });
 });
 
+router.get('/', (req, res) => {
+  console.log('in get');
+  res.sendStatus(200);
+});
+
 module.exports = router;
