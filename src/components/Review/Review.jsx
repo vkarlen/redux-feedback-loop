@@ -52,12 +52,7 @@ function Review() {
             <p>Comments: {feedback.comments}</p>
           </Grid>
           <Grid item sx={1}>
-            <Button
-              variant="contained"
-              color="secondary"
-              name="back"
-              onClick={handleBack}
-            >
+            <Button variant="contained" color="secondary" onClick={handleBack}>
               Back
             </Button>
             &nbsp;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import './Admin.css';
 
 // Martial-UI Imports
@@ -52,32 +53,45 @@ function Admin() {
   return (
     <Container maxWidth="md">
       <h2>Admin Portal</h2>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Feeling</TableCell>
-            <TableCell>Comprehension</TableCell>
-            <TableCell>Support</TableCell>
-            <TableCell>Comments</TableCell>
-            <TableCell>Delete</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {previousFeedback.map((entry) => {
-            return (
-              <TableRow key={entry.id}>
-                <TableCell align="center">{entry.feeling}</TableCell>
-                <TableCell align="center">{entry.understanding}</TableCell>
-                <TableCell align="center">{entry.support}</TableCell>
-                <TableCell>{entry.comments}</TableCell>
-                <TableCell align="center">
-                  <Button onClick={() => handleDelete(entry)}>Delete</Button>
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+      <Paper>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">Date</TableCell>
+              <TableCell align="center">Feeling</TableCell>
+              <TableCell align="center">Comprehension</TableCell>
+              <TableCell align="center">Support</TableCell>
+              <TableCell align="center">Comments</TableCell>
+              <TableCell align="center">Delete</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {previousFeedback.map((entry) => {
+              return (
+                <TableRow key={entry.id}>
+                  <TableCell align="center">
+                    {moment(entry.date).format('L')}
+                  </TableCell>
+                  <TableCell align="center">{entry.feeling}</TableCell>
+                  <TableCell align="center">{entry.understanding}</TableCell>
+                  <TableCell align="center">{entry.support}</TableCell>
+                  <TableCell>{entry.comments}</TableCell>
+                  <TableCell align="center">
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      name="delete"
+                      onClick={() => handleDelete(entry)}
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </Paper>
     </Container>
   );
 }
