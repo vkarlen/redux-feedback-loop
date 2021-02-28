@@ -27,7 +27,7 @@
 
 - [x] Styling with Material UI
 - [x] Add new alerts
-- [] Bring in icons
+- [x] Bring in icons
 
 ### Stretch Goals
 

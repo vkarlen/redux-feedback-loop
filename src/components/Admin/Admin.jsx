@@ -14,6 +14,7 @@ import {
   TableCell,
   TableRow,
 } from '@material-ui/core';
+import { Delete } from '@material-ui/icons';
 
 function Admin() {
   useEffect(() => {
@@ -60,7 +61,9 @@ function Admin() {
               <TableCell align="center">Feeling</TableCell>
               <TableCell align="center">Comprehension</TableCell>
               <TableCell align="center">Support</TableCell>
-              <TableCell align="center">Comments</TableCell>
+              <TableCell align="center" style={{ width: '60%' }}>
+                Comments
+              </TableCell>
               <TableCell align="center">Delete</TableCell>
             </TableRow>
           </TableHead>
@@ -81,8 +84,9 @@ function Admin() {
                       color="secondary"
                       name="delete"
                       onClick={() => handleDelete(entry)}
+                      style={{ width: '20px' }}
                     >
-                      Delete
+                      <Delete />
                     </Button>
                   </TableCell>
                 </TableRow>

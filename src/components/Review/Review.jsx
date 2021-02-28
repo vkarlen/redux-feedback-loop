@@ -7,6 +7,7 @@ import SurveySteps from '../SurveySteps/SurveySteps';
 
 // Martial-UI Imports
 import { Button, Container, Paper, Grid } from '@material-ui/core';
+import { ArrowBackIos, Check } from '@material-ui/icons';
 
 function Review() {
   const feedback = useSelector((store) => store.feedbackReducer);
@@ -53,6 +54,7 @@ function Review() {
           </Grid>
           <Grid item sx={1}>
             <Button variant="contained" color="secondary" onClick={handleBack}>
+              <ArrowBackIos />
               Back
             </Button>
             &nbsp;
@@ -64,6 +66,7 @@ function Review() {
               disabled={errors ? true : null}
             >
               Submit
+              <Check />
             </Button>
           </Grid>
         </Grid>
