@@ -27,8 +27,15 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  console.log('in get');
-  res.sendStatus(200);
+  pool
+    .query('SELECT * FROM "feedback" ORDER BY "date";')
+    .then((dbRes) => {
+      res.send(dbRes.rows);
+    })
+    .catch((err) => {
+      console.log('Error in DB get', err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
