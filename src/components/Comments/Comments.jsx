@@ -48,7 +48,7 @@ function Comments() {
                 name="comments"
                 multiline
                 rowsMax={6}
-                fullWidth="true"
+                fullWidth
                 value={newComments}
                 onChange={(evt) => setNewComment(evt.target.value)}
               />
