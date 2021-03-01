@@ -6,7 +6,7 @@ _Duration: 2 Day Sprint_
 
 This is an app for gathering student feedback to better help gauge how they are feeling, how well they're understanding the material, and if they feel supported on a given day.
 
-To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.heroku.com)
+To see the fully functional site, please visit: [feedback-loops-vk.herokuapp.com/](https://feedback-loops-vk.herokuapp.com/)
 
 ## Installation
 
